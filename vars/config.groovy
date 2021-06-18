@@ -64,13 +64,21 @@ def stage(Map defaultParams = [:]) {
 }
 
 BuildData load(Map defaultParams = [:]) {
+  //Debugging checkout issues
+  if(defaultParams.containsKey("RUN_STAGE_CHECKOUT")) {
+      log.info "Checkout Variable value at load from defaulParams: ${defaultParams[RUN_STAGE_CHECKOUT]}"
+  }
+  if(params.containsKey("RUN_STAGE_CHECKOUT")) {
+      log.info "Checkout Variable value at load from params: ${params[RUN_STAGE_CHECKOUT]}"
+  }
+
   BuildDataBuilder builder = new BuildDataBuilder()
     .withEnvironment(env)
     .withParams(defaultParams + params)
 
   BuildData buildData = builder.build()
   builder.consumeMessages()
-
+  log.info "RUN_STAGE_CHECKOUT value at load after buildData:${buildData.get(RUN_STAGE_CHECKOUT)}"
   log.info "Configuration loaded for: ${buildData.get(BUILD_PLAN_ID)}", buildData
   return buildData
 }
@@ -82,6 +90,10 @@ BuildData get() {
 void applyToJob(Map defaultParams = [:]) {
   BuildData buildData = BuildData.instance
   JobUtils.managePollTrigger(getContext(WorkflowJob.class))
+  // Debug for checkout issues
+  if(defaultParams.containsKey("RUN_STAGE_CHECKOUT")) {
+    log.info "Checkout Variable value at applyToJob from defaultParams: ${defaultParams[RUN_STAGE_CHECKOUT]}"
+  }
 
   List jobConfig = []
 
@@ -101,6 +113,7 @@ void applyToJob(Map defaultParams = [:]) {
   }
 
   if (jobConfig) {
+    log.info "Values at applyToJob from jobConfig: ${jobConfig}"
     properties(jobConfig)
   }
 }

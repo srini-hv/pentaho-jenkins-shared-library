@@ -42,7 +42,10 @@ void configure(Map defaultParams = [:]) {
       // checkout the pipeline repo
       checkout(poll: false, changelog: false, scm: scm)
     }
-
+    
+    if(defaultParams.containsKey("RUN_STAGE_CHECKOUT")) {
+      log.info "Checkout Variable value at configure stage start from defaulParams: ${defaultParams[RUN_STAGE_CHECKOUT]}"
+    }
     config.load(defaultParams)
     config.applyToJob(defaultParams)
 
