@@ -78,7 +78,7 @@ BuildData load(Map defaultParams = [:]) {
 
   BuildData buildData = builder.build()
   builder.consumeMessages()
-  log.info "RUN_CHECKOUTS value at load after buildData:${buildData.isRunCheckouts()}"
+  log.info "RUN_CHECKOUTS value at load after buildData:${buildData.getBool('RUN_STAGE_CHECKOUT')}"
   log.info "Configuration loaded for: ${buildData.get(BUILD_PLAN_ID)}", buildData
   return buildData
 }
