@@ -44,7 +44,7 @@ void configure(Map defaultParams = [:]) {
     }
     
     if(defaultParams.containsKey("RUN_STAGE_CHECKOUT")) {
-      log.info "Checkout Variable value at configure stage start from defaulParams: ${defaultParams[RUN_STAGE_CHECKOUT]}"
+      log.info "Checkout Variable value at configure stage start from defaulParams: ${defaultParams['RUN_STAGE_CHECKOUT']}"
     }
     config.load(defaultParams)
     config.applyToJob(defaultParams)
