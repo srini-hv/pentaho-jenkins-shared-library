@@ -82,7 +82,7 @@ abstract class Stage {
     boolean runStage = isRun ? isRun.call() : buildData.getBool(getRunProperty())
 
     if (buildData.isMinion() && buildData.isSet(MINION_STAGE)) {
-      runStage &= buildData.getString(MINION_STAGE) == id
+      runStage = buildData.getString(MINION_STAGE) == id
     }
 
     return runStage
