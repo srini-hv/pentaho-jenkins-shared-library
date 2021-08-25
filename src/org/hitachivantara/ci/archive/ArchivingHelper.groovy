@@ -168,7 +168,7 @@ class ArchivingHelper implements Serializable {
 
     final String logPattern = simplifyLogEntries(rootFolder, pattern, ')|')
     final String logExclusionPattern = simplifyLogEntries(rootFolder, exclusionPattern, ')|')
-    log.info """
+    dsl.log.info """
 Starting search at '${rootFolder}' with:
 - exclusion pattern: ${logExclusionPattern} 
 - pattern: ${logPattern}
