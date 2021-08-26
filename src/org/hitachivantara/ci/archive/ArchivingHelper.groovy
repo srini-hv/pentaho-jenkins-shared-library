@@ -173,7 +173,7 @@ Starting search at '${rootFolder}' with:
 - exclusion pattern: ${logExclusionPattern} 
 - pattern: ${logPattern}
 """
-    dsl.log..info """
+    dsl.log.info """
     regex: '${pattern}'
     exclusionPattern: '${exclusionPattern}'
     """
