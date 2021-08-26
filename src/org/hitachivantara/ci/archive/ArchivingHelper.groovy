@@ -173,6 +173,10 @@ Starting search at '${rootFolder}' with:
 - exclusion pattern: ${logExclusionPattern} 
 - pattern: ${logPattern}
 """
+    dsl.log..info """
+    regex: '${pattern}'
+    exclusionPattern: '${exclusionPattern}'
+    """
     List<String> artifactPaths = FileUtils.findFiles(rootFolder, "regex:${pattern}", exclusionPattern)
 
     if (!artifactPaths.isEmpty()) {
