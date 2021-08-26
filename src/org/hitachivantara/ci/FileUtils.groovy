@@ -40,7 +40,9 @@ class FileUtils {
   static List<String> findFiles(String rootFolderPath, String artifactPattern, String excludesPattern = null) {
 
     List<String> artifactPaths = []
-
+    steps.log.info "' Root Folder: ${rootFolderPath}'"
+    steps.log.info "' Artifact Pattern: ${artifactPattern}'"
+    steps.log.info "' Excluded Pattern: ${excludesPattern}'"
     if (!artifactPattern) {
       return artifactPaths
     }
